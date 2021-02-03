@@ -18,4 +18,9 @@ public class Item
         this.name = name;
         weight = 0;
     }
+
+    public float GetWeight()
+    {
+        return weight;
+    }
 }
