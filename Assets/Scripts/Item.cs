@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item
+public abstract class Item
 {
     private string name;
     private float weight;
@@ -17,6 +17,12 @@ public class Item
     {
         this.name = name;
         weight = 0;
+    }
+
+
+    public string GetName()
+    {
+        return name;
     }
 
     public float GetWeight()
