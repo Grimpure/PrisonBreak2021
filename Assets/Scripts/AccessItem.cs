@@ -16,8 +16,8 @@ public class AccessItem : Item
         return doorId;
     }
 
-    public bool OpensDoor(int id)
+    public bool OpensDoor(int m_id)
     {
-        return doorId == id;
+        return doorId == m_id;
     }
 }

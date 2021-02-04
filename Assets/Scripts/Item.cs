@@ -6,6 +6,9 @@ public class Item
 {
     private string name;
     private float weight;
+    /* Optional Properties */
+    //private bool stolen;
+    //private bool quest;
 
     public Item(string name, float weight)
     {
@@ -13,9 +16,9 @@ public class Item
         this.weight = weight;
     }
 
-    public Item(string name)
+    public Item(string m_name)
     {
-        this.name = name;
+        this.name = m_name;
         weight = 0;
     }
 
