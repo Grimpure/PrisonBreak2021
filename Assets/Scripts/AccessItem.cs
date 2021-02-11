@@ -8,7 +8,7 @@ public class AccessItem : Item
 
     public AccessItem(string name, float weight, int door) : base(name, weight)
     {
-
+        this.doorId = door;
     }
 
     public int GetDoorId()

@@ -19,6 +19,16 @@ public class Inventory
         this.maxWeight = c_maxWeight;
     }
 
+    public Item GetItemWithName(string name)
+    {
+        foreach (Item item in items)
+        {
+            if (item.GetName() == name) return item;
+        }
+
+        return null;
+    }
+
     public bool AddItem(Item i)
     {
         if (weight + i.GetWeight() <= maxWeight)
