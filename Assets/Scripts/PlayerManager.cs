@@ -9,7 +9,11 @@ public class PlayerManager : MonoBehaviour
     public float baseMaxWeight;
     public GameObject cam;
 
-    public Text interactInfo;
+    public TMPro.TextMeshProUGUI interactTxt;
+
+    public InventoryUI invUI;
+    private bool invOpen;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,13 +35,31 @@ public class PlayerManager : MonoBehaviour
             {
                 //Debug.Log("Hit Interactable: " + hit.collider.name);
                 
-                interactInfo.text = "Press E to Interact with " + hit.collider.GetComponent<Pickup>().name;
+                interactTxt.SetText("Press E to Interact with " + hit.collider.GetComponent<Pickup>().name);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     i.Action(this);
                 }
             }
-        } else { interactInfo.text = " "; }
+        } else { interactTxt.text = " "; }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            invOpen = !invOpen; //Switches between True and False to Open and Close the Inventory
+        }
+        //Sets Inventory into the Active state
+        if (invOpen == true)
+        {
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            invUI.InvToggle(true);
+        }
+        else
+        { //Sends Inventory into Inactive State
+            Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Locked;
+            invUI.InvToggle(false);
+        }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -66,6 +88,7 @@ public class PlayerManager : MonoBehaviour
     public bool AddItem(Item i)
     {
         Debug.Log("Adding Item: " + i.GetName() + " to " + this.gameObject.name + "'s Inventory");
+        invUI.AddItem(i);
         return inv.AddItem(i);
     }
 
