@@ -19,6 +19,9 @@ public class MapGenerator : MonoBehaviour
     public int seed;
     public Vector2 offset;
 
+    public float meshHeightMultiplier;
+    public AnimationCurve meshHeightCurve;
+
     public bool autoUpdate;
 
     public TerrainType[] regions;
@@ -55,7 +58,7 @@ public class MapGenerator : MonoBehaviour
         }
         else if (drawMode == DrawMode.MeshMap)
         {
-            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap), TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
+            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier, meshHeightCurve), TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
         }
     }
 
