@@ -15,6 +15,7 @@ public static class MeshGenerator
         MeshData meshData = new MeshData(width, height);
         int vertexIndex = 0;
 
+        //Creates Mesh Heights
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
@@ -35,6 +36,7 @@ public static class MeshGenerator
     }
 }
 
+//Handles Data for Each Triangle and Vertex needed for Mesh
 public class MeshData
 {
     public Vector3[] vertices;
