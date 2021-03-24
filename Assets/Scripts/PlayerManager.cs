@@ -27,11 +27,13 @@ public class PlayerManager : MonoBehaviour
         //Interact
         RaycastHit hit;
 
+        interactTxt.text = " ";
+
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 4f))
         {
             IInteractable i = hit.collider.GetComponent<IInteractable>();
-         
-            if (i != null) 
+
+            if (hit.collider.gameObject.tag == "Interactable") 
             {
                 //Debug.Log("Hit Interactable: " + hit.collider.name);
                 
@@ -41,7 +43,11 @@ public class PlayerManager : MonoBehaviour
                     i.Action(this);
                 }
             }
-        } else { interactTxt.text = " "; }
+            /*else if (hit.collider.gameObject.tag != "Interactable")
+            {
+                interactTxt.text = " ";
+            }*/
+        } 
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -59,11 +65,6 @@ public class PlayerManager : MonoBehaviour
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
             invUI.InvToggle(false);
-        }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            DropItem("DooDaa");
         }
     }
 
@@ -88,8 +89,14 @@ public class PlayerManager : MonoBehaviour
     public bool AddItem(Item i)
     {
         Debug.Log("Adding Item: " + i.GetName() + " to " + this.gameObject.name + "'s Inventory");
-        invUI.AddItem(i);
-        return inv.AddItem(i);
+        bool temp;
+        //invUI.AddItem(i);
+        if(inv.AddItem(i) == true)
+        {
+            temp = true;
+            invUI.AddItem(i);
+        } else { temp = false; }
+        return temp;
     }
 
     public bool CanOpenDoor(int id)

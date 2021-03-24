@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
     public GameObject invUI;
-
+    public GameObject UIContent;
     public GameObject buttonPrefab;
 
     [SerializeField]
     private Item content;
     public PlayerManager pM;
 
-    public GameObject selectedButton;
+    //public GameObject selectedButton;
 
     public void InvToggle(bool b)
     {
@@ -24,17 +24,6 @@ public class InventoryUI : MonoBehaviour
     {
         content = i;
         buttonPrefab.GetComponentInChildren<Text>().text = i.GetName();
-        Instantiate(buttonPrefab, invUI.transform);
-    }
-
-    public void SelectButton(GameObject button)
-    {
-        selectedButton = button;
-    }
-
-    public void DropItem()
-    {
-        pM.DropItem(content.GetName());
-        Destroy(selectedButton);
+        Instantiate(buttonPrefab, UIContent.transform);
     }
 }
