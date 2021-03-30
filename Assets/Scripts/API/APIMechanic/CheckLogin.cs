@@ -15,6 +15,9 @@ public class CheckLogin : MonoBehaviour
     public GameObject accessGrant;
     public GameObject accessDeny;
 
+    public GameObject endDoor;
+
+    //Gets API Results
     public void GetLogin(string user, string password)
     {
         validN = user;
@@ -39,11 +42,14 @@ public class CheckLogin : MonoBehaviour
         {
             //Grant Access
             Debug.Log("Access Granted!");
+            accessGrant.SetActive(true);
+            endDoor.gameObject.SetActive(false);
         }
         else
         {
             //Deny Access
             Debug.LogError("Access Denied!");
+            accessDeny.SetActive(true);
         }
     }
 
