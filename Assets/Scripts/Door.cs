@@ -39,6 +39,9 @@ public class Door : MonoBehaviour, IInteractable
         if (player.CanOpenDoor(id))
         {
             Open();
+        } else
+        {
+            Debug.Log("Key Missing");
         }
     }
 }

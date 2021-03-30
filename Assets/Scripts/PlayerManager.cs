@@ -36,8 +36,16 @@ public class PlayerManager : MonoBehaviour
             if (hit.collider.gameObject.tag == "Interactable") 
             {
                 //Debug.Log("Hit Interactable: " + hit.collider.name);
-                
-                interactTxt.SetText("Press E to Interact with " + hit.collider.GetComponent<Pickup>().name);
+
+                if (hit.collider.GetComponent<Pickup>())
+                {
+                    interactTxt.SetText("Press E to Interact with " + hit.collider.GetComponent<Pickup>().name);
+                }
+                else if(hit.collider.GetComponent<Door>())
+                {
+                    interactTxt.SetText("Press E to Open with " + hit.collider.GetComponent<Door>().id);
+                }
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     i.Action(this);
