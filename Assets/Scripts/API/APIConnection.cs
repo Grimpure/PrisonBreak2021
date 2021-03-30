@@ -47,7 +47,7 @@ public class APIConnection : MonoBehaviour
                     user = JsonObject["results"][0]["login"]["username"].Value;
                     password = JsonObject["results"][0]["login"]["password"].Value;
 
-                    //ResultUserInfo();
+                    ResultUserInfo();
 
                     break;
             }
@@ -59,9 +59,12 @@ public class APIConnection : MonoBehaviour
         StartCoroutine(GetRequest("https://randomuser.me/api/"));
     }
 
-    /*public void ResultUserInfo()
+    public void ResultUserInfo()
     {
         SetLoginNote loginNote = this.gameObject.GetComponent<SetLoginNote>();
+        CheckLogin loginCheck = this.gameObject.GetComponent<CheckLogin>();
+
         loginNote.SetLoginInfo(user, password);
-    }*/
+        loginCheck.GetLogin(user, password);
+    }
 }
